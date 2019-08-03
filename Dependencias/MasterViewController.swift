@@ -29,7 +29,15 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View
+    private func configureCell(_ cell: DependencyTableViewCell, for dependency: [String: Any]) {
+        let properties =  dependency["properties"] as? [String: Any]
+        cell.dependencyNameLabel.text = properties?["dependenc"] as? String
+        cell.dependencyAddressLabel.text = properties?["ubicacion"] as? String
+    }
+}
+
+// MARK: - TableViewDatasource
+extension MasterViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dependencies.count
     }
@@ -38,6 +46,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as! DependencyTableViewCell
         cell.mapIconImage.tintColor = UIColor(red: 0.7, green: 0.6, blue: 0.9, alpha: 1.0)
         //TODO: implement cell data population
+        self.configureCell(cell, for: self.dependencies[indexPath.row])
         return cell
     }
 }
