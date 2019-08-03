@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DependencyTableViewCell" customModule="Dependencias" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="122.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dependency name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFi-B9-q34">
+                        <rect key="frame" x="12" y="12" width="296" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="54" id="ph4-L1-uMd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" red="0.096060581505298615" green="0.35433882474899292" blue="0.4633069634437561" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Evb-nH-Vzy">
+                        <rect key="frame" x="12" y="78.5" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="Hv6-Gw-g6t"/>
+                            <constraint firstAttribute="width" constant="32" id="Jbx-5U-AxQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dependency address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cu-Bz-Oav">
+                        <rect key="frame" x="56" y="87" width="252" height="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="eFi-B9-q34" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6lD-KP-8dK"/>
+                    <constraint firstAttribute="bottom" secondItem="Evb-nH-Vzy" secondAttribute="bottom" constant="12" id="8Sp-5a-hBy"/>
+                    <constraint firstAttribute="trailing" secondItem="3cu-Bz-Oav" secondAttribute="trailing" constant="12" id="Dbn-9B-d0l"/>
+                    <constraint firstItem="Evb-nH-Vzy" firstAttribute="top" secondItem="eFi-B9-q34" secondAttribute="bottom" constant="12.5" id="HHK-JL-ITo"/>
+                    <constraint firstItem="Evb-nH-Vzy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="O9i-HX-loi"/>
+                    <constraint firstItem="3cu-Bz-Oav" firstAttribute="leading" secondItem="Evb-nH-Vzy" secondAttribute="trailing" constant="12" id="dhO-Sd-z7Y"/>
+                    <constraint firstItem="3cu-Bz-Oav" firstAttribute="centerY" secondItem="Evb-nH-Vzy" secondAttribute="centerY" id="fKE-2E-z9q"/>
+                    <constraint firstItem="eFi-B9-q34" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="lvE-IF-ECL"/>
+                    <constraint firstItem="eFi-B9-q34" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="mi9-UA-Zuh"/>
+                    <constraint firstAttribute="trailing" secondItem="eFi-B9-q34" secondAttribute="trailing" constant="12" id="vdM-NI-b4a"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dependencyAddressLabel" destination="3cu-Bz-Oav" id="eRy-Dk-yRQ"/>
+                <outlet property="dependencyNameLabel" destination="eFi-B9-q34" id="Bhj-OX-gD3"/>
+                <outlet property="mapIconImage" destination="Evb-nH-Vzy" id="uRm-vv-vJi"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="159.70982142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="map-icon" width="24" height="24"/>
+    </resources>
+</document>

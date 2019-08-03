@@ -13,6 +13,8 @@
 		CA1F1EB522F5EE53009DB88A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB322F5EE53009DB88A /* Main.storyboard */; };
 		CA1F1EB722F5EE53009DB88A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB622F5EE53009DB88A /* Assets.xcassets */; };
 		CA1F1EBA22F5EE53009DB88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB822F5EE53009DB88A /* LaunchScreen.storyboard */; };
+		CA2952CA22F608E30033F13F /* DependencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2952C822F608E30033F13F /* DependencyTableViewCell.swift */; };
+		CA2952CB22F608E30033F13F /* DependencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2952C922F608E30033F13F /* DependencyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CA1F1EB622F5EE53009DB88A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1F1EB922F5EE53009DB88A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA1F1EBB22F5EE53009DB88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA2952C822F608E30033F13F /* DependencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyTableViewCell.swift; sourceTree = "<group>"; };
+		CA2952C922F608E30033F13F /* DependencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DependencyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		CA1F1EAC22F5EE53009DB88A /* Dependencias */ = {
 			isa = PBXGroup;
 			children = (
+				CA2952CC22F608E90033F13F /* Components */,
 				CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */,
 				CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */,
 				CA1F1EB122F5EE53009DB88A /* DetailViewController.swift */,
@@ -65,6 +70,15 @@
 				CA1F1EBB22F5EE53009DB88A /* Info.plist */,
 			);
 			path = Dependencias;
+			sourceTree = "<group>";
+		};
+		CA2952CC22F608E90033F13F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CA2952C822F608E30033F13F /* DependencyTableViewCell.swift */,
+				CA2952C922F608E30033F13F /* DependencyTableViewCell.xib */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +141,7 @@
 			files = (
 				CA1F1EBA22F5EE53009DB88A /* LaunchScreen.storyboard in Resources */,
 				CA1F1EB722F5EE53009DB88A /* Assets.xcassets in Resources */,
+				CA2952CB22F608E30033F13F /* DependencyTableViewCell.xib in Resources */,
 				CA1F1EB522F5EE53009DB88A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +155,7 @@
 			files = (
 				CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */,
 				CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */,
+				CA2952CA22F608E30033F13F /* DependencyTableViewCell.swift in Sources */,
 				CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
