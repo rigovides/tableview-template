@@ -13,6 +13,8 @@
 		CA1F1EB522F5EE53009DB88A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB322F5EE53009DB88A /* Main.storyboard */; };
 		CA1F1EB722F5EE53009DB88A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB622F5EE53009DB88A /* Assets.xcassets */; };
 		CA1F1EBA22F5EE53009DB88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB822F5EE53009DB88A /* LaunchScreen.storyboard */; };
+		CA4CD95722F759270028D31B /* DependenciasModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4CD95522F759270028D31B /* DependenciasModel.xcdatamodeld */; };
+		CA4CD95A22F75A0D0028D31B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CD95922F75A0D0028D31B /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CA1F1EB622F5EE53009DB88A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1F1EB922F5EE53009DB88A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA1F1EBB22F5EE53009DB88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA4CD95622F759270028D31B /* DependenciasModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DependenciasModel.xcdatamodel; sourceTree = "<group>"; };
+		CA4CD95922F75A0D0028D31B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4CD95A22F75A0D0028D31B /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,7 @@
 			children = (
 				CA1F1EAC22F5EE53009DB88A /* Dependencias */,
 				CA1F1EAB22F5EE53009DB88A /* Products */,
+				CA4CD95822F75A0D0028D31B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */,
+				CA4CD95522F759270028D31B /* DependenciasModel.xcdatamodeld */,
 				CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */,
 				CA1F1EB122F5EE53009DB88A /* DetailViewController.swift */,
 				CA1F1EB322F5EE53009DB88A /* Main.storyboard */,
@@ -65,6 +72,14 @@
 				CA1F1EBB22F5EE53009DB88A /* Info.plist */,
 			);
 			path = Dependencias;
+			sourceTree = "<group>";
+		};
+		CA4CD95822F75A0D0028D31B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA4CD95922F75A0D0028D31B /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +155,7 @@
 			files = (
 				CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */,
 				CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */,
+				CA4CD95722F759270028D31B /* DependenciasModel.xcdatamodeld in Sources */,
 				CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +354,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CA4CD95522F759270028D31B /* DependenciasModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA4CD95622F759270028D31B /* DependenciasModel.xcdatamodel */,
+			);
+			currentVersion = CA4CD95622F759270028D31B /* DependenciasModel.xcdatamodel */;
+			path = DependenciasModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CA1F1EA222F5EE53009DB88A /* Project object */;
 }

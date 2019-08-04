@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -40,5 +41,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
+
+// MARK: CoreData stack
+class PersistanceContainer {
+    private init() {}
+    static var shared: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "DependenciasModel")
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Unable to load persistent stores: \(error)")
+            }
+        }
+        return container
+    }()
 }
 

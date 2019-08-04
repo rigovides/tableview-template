@@ -12,6 +12,7 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = ["First item"]
+    var persistanceContainer = PersistanceContainer.shared
 
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
