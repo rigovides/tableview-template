@@ -11,28 +11,37 @@ import UIKit
 class MasterViewController: UITableViewController {
     private let cellReuseIdentifier = "dependencyCell"
 
-    var dependencies: [[String: Any]] = [["Unidad de Registro Civil": "Morelos #65"]]
+    var dependencies = [Dependency]()
 
     override func viewDidLoad() {
          self.tableView.register(UINib(nibName: "DependencyTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
-        self.fetchDendencies()
+        self.fetchDendencies { dependencies in
+            self.dependencies = dependencies
+            self.reloadData()
+        }
     }
 
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = self.dependencies[indexPath.row] as [String: Any]
+                let object = self.dependencies[indexPath.row]
                 let controller = segue.destination as! DetailViewController
                 controller.detailItem = object
             }
         }
     }
 
-    private func configureCell(_ cell: DependencyTableViewCell, for dependency: [String: Any]) {
-        let properties =  dependency["properties"] as? [String: Any]
-        cell.dependencyNameLabel.text = properties?["dependenc"] as? String
-        cell.dependencyAddressLabel.text = properties?["ubicacion"] as? String
+    private func configureCell(_ cell: DependencyTableViewCell, for dependency: Dependency) {
+        cell.mapIconImage.tintColor = UIColor(red: 0.7, green: 0.6, blue: 0.9, alpha: 1.0)
+        cell.dependencyNameLabel.text = dependency.name
+        cell.dependencyAddressLabel.text = dependency.address
+    }
+
+    private func reloadData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -44,8 +53,6 @@ extension MasterViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as! DependencyTableViewCell
-        cell.mapIconImage.tintColor = UIColor(red: 0.7, green: 0.6, blue: 0.9, alpha: 1.0)
-        //TODO: implement cell data population
         self.configureCell(cell, for: self.dependencies[indexPath.row])
         return cell
     }
@@ -53,25 +60,30 @@ extension MasterViewController {
 
 // MARK: - Networking code
 extension MasterViewController {
-    func fetchDendencies() {
+    func fetchDendencies(completion: (([Dependency]) -> ())?) {
         let url = URL(string: "https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson")
+        let resultsKey = "features"
 
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             guard let data = data, error == nil else {
                 return
             }
 
+            var dependencies = [Dependency]()
+
             do {
-                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                let root = jsonResponse as? [String: Any]
-                self.dependencies = root?["features"] as! [[String: Any]]
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    for case let dependencyJSON in json[resultsKey] as! [[String: Any]] {
+                        if let dependency = Dependency(json: dependencyJSON) {
+                            dependencies.append(dependency)
+                        }
+                    }
+                }
             } catch let parsingError {
                 print(parsingError)
             }
 
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            completion?(dependencies)
         }
 
         task.resume()
