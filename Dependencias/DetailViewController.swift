@@ -14,8 +14,15 @@ class DetailViewController: UIViewController {
 
     var detailItem: Any? = nil
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let dependency = detailItem as? Dependency else {
+            return
+        }
+
+        let region = MKCoordinateRegion(center: dependency.location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.007, longitudeDelta: 0.007))
+
+        self.mapView.setRegion(region, animated: true)
     }
 }
 

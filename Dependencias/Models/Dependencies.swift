@@ -37,6 +37,7 @@ struct Dependency {
             return nil
         }
 
+        //lat/long is inverted in dataset
         return CLLocation(latitude: coordinates.last!, longitude: coordinates.first!)
     }
 }
