@@ -11,32 +11,69 @@ import UIKit
 class MasterViewController: UITableViewController {
     private let cellReuseIdentifier = "dependencyCell"
 
-    var objects: [[String: Any]] = [["Unidad de Registro Civil": "Morelos #65"]]
+    var dependencies: [[String: Any]] = [["Unidad de Registro Civil": "Morelos #65"]]
 
     override func viewDidLoad() {
          self.tableView.register(UINib(nibName: "DependencyTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
+        self.fetchDendencies()
     }
 
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as [String: Any]
+                let object = self.dependencies[indexPath.row] as [String: Any]
                 let controller = segue.destination as! DetailViewController
                 controller.detailItem = object
             }
         }
     }
 
-    // MARK: - Table View
+    private func configureCell(_ cell: DependencyTableViewCell, for dependency: [String: Any]) {
+        let properties =  dependency["properties"] as? [String: Any]
+        cell.dependencyNameLabel.text = properties?["dependenc"] as? String
+        cell.dependencyAddressLabel.text = properties?["ubicacion"] as? String
+    }
+}
+
+// MARK: - TableViewDatasource
+extension MasterViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return self.dependencies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as! DependencyTableViewCell
         cell.mapIconImage.tintColor = UIColor(red: 0.7, green: 0.6, blue: 0.9, alpha: 1.0)
         //TODO: implement cell data population
+        self.configureCell(cell, for: self.dependencies[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - Networking code
+extension MasterViewController {
+    func fetchDendencies() {
+        let url = URL(string: "https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson")
+
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard let data = data, error == nil else {
+                return
+            }
+
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                let root = jsonResponse as? [String: Any]
+                self.dependencies = root?["features"] as! [[String: Any]]
+            } catch let parsingError {
+                print(parsingError)
+            }
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+
+        task.resume()
     }
 }
