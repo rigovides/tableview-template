@@ -58,6 +58,13 @@ extension MasterViewController {
     }
 }
 
+// MARK: - TableViewDelegate
+extension MasterViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
+    }
+}
+
 // MARK: - Networking code
 extension MasterViewController {
     func fetchDendencies(completion: (([Dependency]) -> ())?) {

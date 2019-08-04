@@ -7,16 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController {
-
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
 
     var detailItem: Any? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.detailDescriptionLabel.text = detailItem as? String
     }
 }
 
