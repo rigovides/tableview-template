@@ -64,11 +64,13 @@ extension MasterViewController {
     private func fetchDependencies() {
         //get dependencies from any source
         let mockResults = [("fake dependency A", "fake address A"), ("fake dependency B", "fake address B"), ("fake dependency C", "fake address C"), ("fake dependency D", "fake address D")]
+        var dependencies = [Dependency]()
         //create managed objects and save them through context
         for (name, address) in mockResults {
             let dependency = Dependency(context: self.persistanceContainer.viewContext)
             dependency.name = name
             dependency.address = address
+            dependencies.append(dependency)
         }
 
         do {
@@ -77,7 +79,7 @@ extension MasterViewController {
             fatalError("Failure to save context: \(error)")
         }
 
-        if mockResults.count > 0 {
+        if dependencies.count > 0 {
             self.fetchDependenciesIfNeeded()
         }
     }
