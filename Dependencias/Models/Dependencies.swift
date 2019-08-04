@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import MapKit
 import CoreLocation
 
-struct Dependency {
+class Dependency: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D {
+        return location.coordinate
+    }
+
     let name: String
     let address: String
     let location: CLLocation

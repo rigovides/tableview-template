@@ -23,6 +23,11 @@ class DetailViewController: UIViewController {
         let region = MKCoordinateRegion(center: dependency.location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.007, longitudeDelta: 0.007))
 
         self.mapView.setRegion(region, animated: true)
+        self.addAnnotation(for: dependency)
+    }
+
+    func addAnnotation(for dependency: Dependency) {
+        self.mapView.addAnnotation(dependency)
     }
 }
 
