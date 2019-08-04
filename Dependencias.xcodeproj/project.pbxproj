@@ -15,6 +15,7 @@
 		CA1F1EBA22F5EE53009DB88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB822F5EE53009DB88A /* LaunchScreen.storyboard */; };
 		CA2952CA22F608E30033F13F /* DependencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2952C822F608E30033F13F /* DependencyTableViewCell.swift */; };
 		CA2952CB22F608E30033F13F /* DependencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA2952C922F608E30033F13F /* DependencyTableViewCell.xib */; };
+		CA957C8B22F67BF5004811D3 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA957C8A22F67BF5004811D3 /* Dependencies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CA1F1EBB22F5EE53009DB88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA2952C822F608E30033F13F /* DependencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyTableViewCell.swift; sourceTree = "<group>"; };
 		CA2952C922F608E30033F13F /* DependencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DependencyTableViewCell.xib; sourceTree = "<group>"; };
+		CA957C8A22F67BF5004811D3 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		CA1F1EAC22F5EE53009DB88A /* Dependencias */ = {
 			isa = PBXGroup;
 			children = (
+				CA957C8922F67BE7004811D3 /* Models */,
 				CA2952CC22F608E90033F13F /* Components */,
 				CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */,
 				CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */,
@@ -79,6 +82,14 @@
 				CA2952C922F608E30033F13F /* DependencyTableViewCell.xib */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		CA957C8922F67BE7004811D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CA957C8A22F67BF5004811D3 /* Dependencies.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 				CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */,
 				CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */,
 				CA2952CA22F608E30033F13F /* DependencyTableViewCell.swift in Sources */,
+				CA957C8B22F67BF5004811D3 /* Dependencies.swift in Sources */,
 				CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
