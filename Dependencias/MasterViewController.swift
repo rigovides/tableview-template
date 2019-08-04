@@ -53,6 +53,7 @@ extension MasterViewController {
 extension MasterViewController {
     func fetchDendencies() {
         let url = URL(string: "https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson")
+        let resultsKey = "features"
 
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -60,9 +61,8 @@ extension MasterViewController {
             }
 
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let root = json as? [String: Any] {
-                    for dependencyJSON in root["features"] as! [[String: Any]] {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    for case let dependencyJSON in json[resultsKey] as! [[String: Any]] {
                         if let dependency = Dependency(json: dependencyJSON) {
                             self.dependencies.append(dependency)
                         }
