@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Dependency {
     let name: String
     let address: String
+    let location: CLLocation
 
     init?(json: [String: Any]) {
         guard let  props = json["properties"] as? [String: Any],
@@ -19,7 +21,22 @@ struct Dependency {
                 return nil
         }
 
+        guard let geometry = json["geometry"] as? [String: Any],
+            let rawCoordinates = geometry["coordinates"] as? [Any],
+            let location = Dependency.convertToLocation(from: rawCoordinates) else {
+                return nil
+        }
+
         self.name = name
         self.address = address
+        self.location = location
+    }
+
+    static func convertToLocation(from rawCoordinate: [Any]) -> CLLocation? {
+        guard let coordinates = rawCoordinate.first as? [Double] else {
+            return nil
+        }
+
+        return CLLocation(latitude: coordinates.last!, longitude: coordinates.first!)
     }
 }

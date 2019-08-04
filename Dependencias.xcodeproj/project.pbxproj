@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA00468D22F7873200FC7576 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA00468C22F7873200FC7576 /* MapKit.framework */; };
+		CA00468F22F7898000FC7576 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA00468E22F7898000FC7576 /* CoreLocation.framework */; };
 		CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */; };
 		CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */; };
 		CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F1EB122F5EE53009DB88A /* DetailViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		CA00468C22F7873200FC7576 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CA00468E22F7898000FC7576 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CA1F1EAA22F5EE53009DB88A /* Dependencias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dependencias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA00468F22F7898000FC7576 /* CoreLocation.framework in Frameworks */,
 				CA00468D22F7873200FC7576 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +52,7 @@
 		CA00468B22F7873200FC7576 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA00468E22F7898000FC7576 /* CoreLocation.framework */,
 				CA00468C22F7873200FC7576 /* MapKit.framework */,
 			);
 			name = Frameworks;
