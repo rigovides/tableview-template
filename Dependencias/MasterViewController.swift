@@ -15,7 +15,10 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
          self.tableView.register(UINib(nibName: "DependencyTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
-        self.fetchDendencies()
+        self.fetchDendencies { dependencies in
+            self.dependencies = dependencies
+            self.reloadData()
+        }
     }
 
     // MARK: - Segues
@@ -34,6 +37,12 @@ class MasterViewController: UITableViewController {
         cell.dependencyNameLabel.text = dependency.name
         cell.dependencyAddressLabel.text = dependency.address
     }
+
+    private func reloadData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 // MARK: - TableViewDatasource
@@ -51,7 +60,7 @@ extension MasterViewController {
 
 // MARK: - Networking code
 extension MasterViewController {
-    func fetchDendencies() {
+    func fetchDendencies(completion: (([Dependency]) -> ())?) {
         let url = URL(string: "https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson")
         let resultsKey = "features"
 
@@ -60,11 +69,13 @@ extension MasterViewController {
                 return
             }
 
+            var dependencies = [Dependency]()
+
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                     for case let dependencyJSON in json[resultsKey] as! [[String: Any]] {
                         if let dependency = Dependency(json: dependencyJSON) {
-                            self.dependencies.append(dependency)
+                            dependencies.append(dependency)
                         }
                     }
                 }
@@ -72,9 +83,7 @@ extension MasterViewController {
                 print(parsingError)
             }
 
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            completion?(dependencies)
         }
 
         task.resume()
