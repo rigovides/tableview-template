@@ -52,6 +52,7 @@ class MasterViewController: UITableViewController {
 extension MasterViewController {
     private func fetchDependenciesIfNeeded() {
         let request: NSFetchRequest<Dependency> = Dependency.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         guard let results = try? self.persistanceContainer.viewContext.fetch(request) as [Dependency], results.count > 0 else {
             self.fetchDependencies()
             return
