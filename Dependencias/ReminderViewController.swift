@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ReminderViewController: UIViewController {
 
@@ -14,10 +15,32 @@ class ReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        // Do any additional setup after loading the view.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.checkPermissions()
     }
     
     @IBAction func remindButtonAction(_ sender: Any) {
+    }
+
+    private func checkPermissions() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { (settings) in
+            guard settings.authorizationStatus == .authorized else {
+                let alert = UIAlertController(title: "Enable Notifications", message: "Please enable notifications in app settings to continue", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                self.show(alert, sender: nil)
+                return
+            }
+            if settings.alertSetting == .enabled {
+                self.remindButton.isEnabled = true// delivery deseable
+            }
+            else {
+                // configuración específica
+            }
+        }
     }
 }
