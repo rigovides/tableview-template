@@ -15,6 +15,14 @@ class Dependency: NSObject, MKAnnotation {
         return location.coordinate
     }
 
+    var title: String? {
+        return self.name
+    }
+
+    var subtitle: String? {
+        return self.address
+    }
+
     let name: String
     let address: String
     let location: CLLocation
