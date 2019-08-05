@@ -16,6 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        let center = UNUserNotificationCenter.current()
+        // Pedimos permiso para alerts y sonidos.
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            // Habilitar o deshabilitar
+            if granted == false {
+                DispatchQueue.main.async {
+                    if let vc = self.window?.rootViewController as? ReminderViewController {
+                        vc.remindButton.isEnabled = false
+                    }
+                }
+            }
+        }
+
         return true
     }
 
