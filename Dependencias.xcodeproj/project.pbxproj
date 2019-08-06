@@ -15,6 +15,7 @@
 		CA1F1EBA22F5EE53009DB88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1F1EB822F5EE53009DB88A /* LaunchScreen.storyboard */; };
 		CA203A3A22F8AD1D0004A5D1 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA203A3922F8AD1D0004A5D1 /* ReminderViewController.swift */; };
 		CA203A3D22F8AE1E0004A5D1 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA203A3C22F8AE1E0004A5D1 /* UserNotifications.framework */; };
+		CAD4566B22F9344D00C006AA /* DeniedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4566A22F9344D00C006AA /* DeniedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CA1F1EBB22F5EE53009DB88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA203A3922F8AD1D0004A5D1 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		CA203A3C22F8AE1E0004A5D1 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		CAD4566A22F9344D00C006AA /* DeniedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeniedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				CA1F1EB822F5EE53009DB88A /* LaunchScreen.storyboard */,
 				CA1F1EBB22F5EE53009DB88A /* Info.plist */,
 				CA203A3922F8AD1D0004A5D1 /* ReminderViewController.swift */,
+				CAD4566A22F9344D00C006AA /* DeniedViewController.swift */,
 			);
 			path = Dependencias;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */,
 				CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */,
 				CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */,
+				CAD4566B22F9344D00C006AA /* DeniedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
