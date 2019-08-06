@@ -31,7 +31,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         }
 
+        UNUserNotificationCenter.current().delegate = self
+
         return true
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.window?.rootViewController?.show(alert, sender: nil)
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        self.showAlert(title: "Time to deep breath", message: "10 seconds have passed 💙")
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        self.showAlert(title: "Welcome back", message: "Now breath...")
     }
 }
 
