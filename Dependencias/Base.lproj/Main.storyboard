@@ -61,7 +61,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="nN9-XE-ZMh">
             <objects>
-                <viewController id="ssu-j5-lZU" customClass="WelcomeViewController" customModule="Dependencias" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="welcome-id" id="ssu-j5-lZU" customClass="WelcomeViewController" customModule="Dependencias" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mI3-zX-ZTM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -48,6 +48,10 @@ class LoginViewController: UIViewController {
             }
             
             self.performSegue(withIdentifier: "welcome-segue", sender: nil)
+            
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(true, forKey: "userIsLoggedIn")
+            userDefaults.synchronize()
         }
         
         alert.addAction(action)
