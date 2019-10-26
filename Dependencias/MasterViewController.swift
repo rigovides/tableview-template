@@ -24,6 +24,8 @@ class MasterViewController: UITableViewController {
     
     var objectsLabel: UILabel?
     
+    let defaultImage = UIImage(named: "user-default")
+    
     var numberOfElements: Int {
         return self.objects.compactMap{ $0.count }.reduce(0) { $0 + $1 }
     }
@@ -69,9 +71,24 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        var cellID = "Cell"
+        if indexPath.row % 2 == 0 {
+            cellID = "Cell-Pair"
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        
         let object = objects[indexPath.section][indexPath.row]
-        cell.textLabel!.text = object
+        
+        if let label = cell.contentView.viewWithTag(111) as? UILabel {
+            label.text = object
+        }
+        
+        if let imageView = cell.contentView.viewWithTag(222) as? UIImageView {
+            imageView.image = self.defaultImage
+        }
+        
         return cell
     }
     
