@@ -33,6 +33,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "custom-cell")
+        
         let container = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 80.0))
         container.backgroundColor = .black
         
@@ -71,22 +73,18 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var cellID = "Cell"
-        if indexPath.row % 2 == 0 {
-            cellID = "Cell-Pair"
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "custom-cell", for: indexPath)
+        cell.contentView.backgroundColor = .white
         
         let object = objects[indexPath.section][indexPath.row]
         
-        if let label = cell.contentView.viewWithTag(111) as? UILabel {
-            label.text = object
-        }
-        
-        if let imageView = cell.contentView.viewWithTag(222) as? UIImageView {
-            imageView.image = self.defaultImage
+        if let customCell = cell as? CustomCell {
+            if indexPath.row % 2 == 0 {
+                customCell.contentView.backgroundColor = .lightGray
+            }
+            
+            customCell.nameLabel.text = object
+            customCell.profileImage.image = self.defaultImage
         }
         
         return cell
@@ -110,6 +108,20 @@ class MasterViewController: UITableViewController {
             self.tableView.deleteRows(at: [indexPath], with: .right)
             self.objectsLabel?.text = "\(self.numberOfElements) Objects"
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detail = ContactDetailViewController(nibName: "ContactDetailViewController", bundle: nil)
+        _ = detail.view
+        
+        //get selected contact
+        let contact = objects[indexPath.section][indexPath.row]
+        
+        //set contact data to detail
+        detail.nameLabel?.text = contact
+        
+        //push detail
+        self.navigationController?.pushViewController(detail, animated: true)
     }
     
     @IBAction func editAction(_ sender: Any) {

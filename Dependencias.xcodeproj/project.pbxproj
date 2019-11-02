@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		845A2FEF236DDB8C00EB5EB9 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A2FED236DDB8C00EB5EB9 /* CustomCell.swift */; };
+		845A2FF0236DDB8C00EB5EB9 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845A2FEE236DDB8C00EB5EB9 /* CustomCell.xib */; };
+		845A2FF3236DE70C00EB5EB9 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A2FF1236DE70C00EB5EB9 /* ContactDetailViewController.swift */; };
+		845A2FF4236DE70C00EB5EB9 /* ContactDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845A2FF2236DE70C00EB5EB9 /* ContactDetailViewController.xib */; };
 		CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */; };
 		CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */; };
 		CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F1EB122F5EE53009DB88A /* DetailViewController.swift */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		845A2FED236DDB8C00EB5EB9 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		845A2FEE236DDB8C00EB5EB9 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		845A2FF1236DE70C00EB5EB9 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
+		845A2FF2236DE70C00EB5EB9 /* ContactDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactDetailViewController.xib; sourceTree = "<group>"; };
 		CA1F1EAA22F5EE53009DB88A /* Dependencias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dependencias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1F1EAD22F5EE53009DB88A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA1F1EAF22F5EE53009DB88A /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +71,10 @@
 				CA1F1EB622F5EE53009DB88A /* Assets.xcassets */,
 				CA1F1EB822F5EE53009DB88A /* LaunchScreen.storyboard */,
 				CA1F1EBB22F5EE53009DB88A /* Info.plist */,
+				845A2FED236DDB8C00EB5EB9 /* CustomCell.swift */,
+				845A2FEE236DDB8C00EB5EB9 /* CustomCell.xib */,
+				845A2FF1236DE70C00EB5EB9 /* ContactDetailViewController.swift */,
+				845A2FF2236DE70C00EB5EB9 /* ContactDetailViewController.xib */,
 			);
 			path = Dependencias;
 			sourceTree = "<group>";
@@ -127,6 +139,8 @@
 			files = (
 				CA1F1EBA22F5EE53009DB88A /* LaunchScreen.storyboard in Resources */,
 				CA1F1EB722F5EE53009DB88A /* Assets.xcassets in Resources */,
+				845A2FF0236DDB8C00EB5EB9 /* CustomCell.xib in Resources */,
+				845A2FF4236DE70C00EB5EB9 /* ContactDetailViewController.xib in Resources */,
 				CA1F1EB522F5EE53009DB88A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +153,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA1F1EB222F5EE53009DB88A /* DetailViewController.swift in Sources */,
+				845A2FF3236DE70C00EB5EB9 /* ContactDetailViewController.swift in Sources */,
 				CA1F1EB022F5EE53009DB88A /* MasterViewController.swift in Sources */,
+				845A2FEF236DDB8C00EB5EB9 /* CustomCell.swift in Sources */,
 				CA1F1EAE22F5EE53009DB88A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
