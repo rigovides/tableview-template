@@ -11,59 +11,21 @@ import UIKit
 class MasterViewController: UITableViewController {
     private let cellReuseIdentifier = "dependencyCell"
 
-    var dependencies = [[String: Any]]()
-
+    var dependencies = [Dependency]()
+    
     override func viewDidLoad() {
-         self.tableView.register(UINib(nibName: "DependencyTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
-        //https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson
-        let url = URL(string: "https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson")
+        self.tableView.register(UINib(nibName: "DependencyTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
         
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error != nil {
+        fetchDependencies() { dependencies, error in
+            guard let dependencies = dependencies, error == nil else {
+                //show UIAlertViewController
                 return
             }
             
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode >= 400 {
-                return
-            }
-
-            guard let data = data else { return }
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let root = json as? [String : Any] {
-                    if let features = root["features"] as? [[String : Any]] {
-                        features.forEach { feature in
-                            guard let properties = feature["properties"] as? [String : String] else {
-                                return
-                            }
-                            var dependency = [String : String]()
-                            dependency["name"] = properties["dependenc"]
-                            dependency["address"] = properties["ubicacion"]
-                            
-                            self.dependencies.append(dependency)
-                        }
-                    }
-                }
-            } catch {
-                print(error)
-            }
+            self.dependencies = dependencies
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
-        }
-        
-        task.resume()
-    }
-
-    // MARK: - Segues
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let object = dependencies[indexPath.row] as [String: Any]
-                let controller = segue.destination as! DetailViewController
-                controller.detailItem = object
             }
         }
     }
@@ -79,8 +41,50 @@ class MasterViewController: UITableViewController {
         //TODO: implement cell data population
         
         let dependency = self.dependencies[indexPath.row]
-        cell.dependencyNameLabel?.text = dependency["name"] as? String
-        cell.dependencyAddressLabel?.text = dependency["address"] as? String
+        cell.dependencyNameLabel?.text = dependency.name
+        cell.dependencyAddressLabel?.text = dependency.address
         return cell
+    }
+    
+    fileprivate func fetchDependencies(completion: @escaping (([Dependency]?, Error?) -> Void)) {
+        let url = URL(string: "https://datos.guadalajara.gob.mx/sites/default/files/dependencias_municipales.geojson")
+        
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                completion(nil, error)
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode >= 400 {
+                return
+            }
+            
+            guard let data = data else { return }
+            var dependencies = [Dependency]()
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                if let root = json as? [String : Any] {
+                    if let features = root["features"] as? [[String : Any]] {
+//                        features.forEach { feature in
+//                            if let dependency = Dependency(json: feature) {
+//                                self.dependencies.append(dependency)
+//                            }
+//                        }
+                        
+                        dependencies = features.compactMap { Dependency(json: $0) }
+                    }
+                    
+                    
+                }
+            } catch {
+                print(error)
+                completion(nil, error)
+            }
+            
+            completion(dependencies, nil)
+        }
+        
+        task.resume()
     }
 }
