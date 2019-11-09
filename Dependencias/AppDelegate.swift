@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -40,5 +41,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        
+        let coordinator = NSPersistentContainer(name: "ContactsDataModel")
+        
+        coordinator.loadPersistentStores() { (description, error) in
+            if error != nil {
+                fatalError()
+            }
+        }
+        
+        return coordinator
+    }()
 }
 

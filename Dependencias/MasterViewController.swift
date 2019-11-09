@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [["Alfredo", "Alicia", "Adrian"],
-                   ["Carlos", "Cesar", "Catalina"],
-                   ["Diego"],
-                   ["Francisco","Federico"],
-                   ["Lucia", "Luis", "Lola"],
-                   ["Rodrigo", "Rosa", "Ramon", "Ricardo"]]
-    
-    let sectionIndexes = ["A", "C", "D", "F", "L", "R"]
+    lazy var objects: [Contact] = {
+        var results = [Contact]()
+        let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            if let fetched = try? delegate.persistentContainer.viewContext.fetch(fetchRequest) {
+                results = fetched
+            }
+        }
+        return results
+    }()
     
     var isEditingTable = false
     
@@ -27,11 +32,13 @@ class MasterViewController: UITableViewController {
     let defaultImage = UIImage(named: "user-default")
     
     var numberOfElements: Int {
-        return self.objects.compactMap{ $0.count }.reduce(0) { $0 + $1 }
+        return self.objects.count
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.populuateContacts()
         
         self.tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "custom-cell")
         
@@ -64,38 +71,26 @@ class MasterViewController: UITableViewController {
     }
 
     // MARK: - Table View
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.objects.count
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.objects[section].count
+        return self.objects.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "custom-cell", for: indexPath)
         cell.contentView.backgroundColor = .white
         
-        let object = objects[indexPath.section][indexPath.row]
+        let object = objects[indexPath.row]
         
         if let customCell = cell as? CustomCell {
             if indexPath.row % 2 == 0 {
                 customCell.contentView.backgroundColor = .lightGray
             }
             
-            customCell.nameLabel.text = object
+            customCell.nameLabel.text = object.name
             customCell.profileImage.image = self.defaultImage
         }
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.sectionIndexes[section]
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return self.sectionIndexes
     }
   
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -104,7 +99,13 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.objects[indexPath.section].remove(at: indexPath.row)
+            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+                let contact = self.objects[indexPath.row]
+                delegate.persistentContainer.viewContext.delete(contact)
+                try? delegate.persistentContainer.viewContext.save()
+            }
+            
+            self.objects.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .right)
             self.objectsLabel?.text = "\(self.numberOfElements) Objects"
         }
@@ -115,10 +116,10 @@ class MasterViewController: UITableViewController {
         _ = detail.view
         
         //get selected contact
-        let contact = objects[indexPath.section][indexPath.row]
+        let contact = objects[indexPath.row]
         
         //set contact data to detail
-        detail.nameLabel?.text = contact
+        detail.nameLabel?.text = contact.name
         
         //push detail
         self.navigationController?.pushViewController(detail, animated: true)
@@ -134,6 +135,34 @@ class MasterViewController: UITableViewController {
         
         let title = self.isEditingTable ? "Done" : "Edit"
         button.setTitle(title, for: .normal)
+    }
+}
+
+extension MasterViewController {
+    func populuateContacts() {
+        let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
+        
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            if let results = try? delegate.persistentContainer.viewContext.fetch(fetchRequest), results.isEmpty {
+                
+                let objects = ["Alfredo", "Alicia", "Adrian",
+                               "Carlos", "Cesar", "Catalina",
+                               "Diego",
+                               "Francisco","Federico",
+                               "Lucia", "Luis", "Lola",
+                               "Rodrigo", "Rosa", "Ramon", "Ricardo"]
+                
+                var contacts = [Contact]()
+                
+                objects.forEach { (object) in
+                    let contact = Contact(context: delegate.persistentContainer.viewContext)
+                    contact.name = object
+                    contacts.append(contact)
+                }
+                
+                try? delegate.persistentContainer.viewContext.save()
+            }
+        }
     }
 }
 
